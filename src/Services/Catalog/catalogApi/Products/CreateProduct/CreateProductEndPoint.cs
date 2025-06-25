@@ -1,7 +1,4 @@
-﻿using Carter;
-using Mapster;
-using MediatR;
-
+﻿
 namespace catalogApi.Products.CreateProduct
 {
     public record CreateProductRequest(string Name, List<string> Category, string Description, string ImageFile, decimal Price);
@@ -13,8 +10,10 @@ namespace catalogApi.Products.CreateProduct
             app.MapPost("/products",
                 async (CreateProductRequest request, ISender sender) =>
             {
+                //Mapping Request to command using mapster
                 var command = request.Adapt<CreateProductCommand>();
                 var result = await sender.Send(command);
+                //Mapping result to response using mapster
                 var response = result.Adapt<CreateProductResponse>();
                 return Results.Created($"/products/{response.Id}", response);
             })

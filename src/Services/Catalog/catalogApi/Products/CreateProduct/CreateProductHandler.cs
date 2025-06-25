@@ -1,5 +1,4 @@
-﻿using BuildingBlocks.CQRS;
-using catalogApi.Models;
+﻿
 
 namespace catalogApi.Products.CreateProduct
 {
