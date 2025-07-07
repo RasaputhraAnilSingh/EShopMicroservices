@@ -3,3 +3,8 @@ global using catalogApi.Models;
 global using Carter;
 global using Mapster;
 global using MediatR;
+global using catalogApi.Products.CreateProduct;
+global using Dapper;
+global using Microsoft.Data.SqlClient;
+global using System.Data;
+global using catalogApi.Exceptions;
