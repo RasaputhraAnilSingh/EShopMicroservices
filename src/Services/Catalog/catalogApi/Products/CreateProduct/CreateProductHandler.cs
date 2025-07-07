@@ -5,7 +5,7 @@ namespace catalogApi.Products.CreateProduct
 
     public record CreateProductCommand(string Name, List<string> Category, string Description, string ImageFile, decimal Price) 
         : ICommand<CreateProductResult>;
-    public record CreateProductResult(Guid Id);
+    public record CreateProductResult(string Id);
     internal class CreateProductCommandHandler 
         : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
