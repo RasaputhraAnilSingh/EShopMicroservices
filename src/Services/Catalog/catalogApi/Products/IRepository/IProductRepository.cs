@@ -2,6 +2,6 @@
 {
     public interface IProductRepository
     {
-        Task<Guid> CreateProductAsync(Product products);
+        Task<string> CreateProductAsync(Product products);
     }
 }
