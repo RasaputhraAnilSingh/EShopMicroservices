@@ -15,9 +15,11 @@ namespace catalogApi.Products.ProductById
             _logger = logger;
         
         }
-        public Task<ProductByIdResult> Handle(ProductByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ProductByIdResult> Handle(ProductByIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var result = await _productRepository.GetProductById(request.id);
+            return new ProductByIdResult(result);
+
         }
     }
 }
