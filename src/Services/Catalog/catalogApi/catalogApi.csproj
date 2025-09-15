@@ -11,6 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Products\UpdateProducts\**" />
+    <Content Remove="Products\UpdateProducts\**" />
+    <EmbeddedResource Remove="Products\UpdateProducts\**" />
+    <None Remove="Products\UpdateProducts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
 	  <PackageReference Include="Carter" Version="8.2.1" />
 	  <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
 	  <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
@@ -21,7 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Products\UpdateProducts\" />
+    <Folder Include="Products\DeleteProductById\" />
+    <Folder Include="Products\ProductByCategory\" />
   </ItemGroup>
 
 </Project>

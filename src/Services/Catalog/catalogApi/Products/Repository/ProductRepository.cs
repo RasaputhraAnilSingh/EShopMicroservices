@@ -1,5 +1,4 @@
-﻿using catalogApi.Products.IRepository;
-
+﻿
 namespace catalogApi.Products.Repository
 {
     public class ProductRepository : IProductRepository
@@ -33,6 +32,83 @@ namespace catalogApi.Products.Repository
                 throw new ProductsServiceExceptions(ex.Message);
             }
 
+        }
+
+        public async Task<bool> DeleteProductById(Guid id)
+        {
+            try
+            {
+                using (IDbConnection connection = new SqlConnection(_configuration["SqlServer:ConnectionStrings:DefaultConnection"]))
+                {
+                    connection.Open();
+                    string sqlText = $"Delete from dbo.Products where id = @_id";
+                    var result = await connection.ExecuteAsync(sqlText, new {_id = id});
+                    bool response = result > 0 ? true : false;
+                    return response;
+
+                }
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw new ProductsServiceExceptions(ex.Message);
+            }
+        }
+
+        public async Task<List<Product>> GetAllProducts()
+        {
+            try
+            {
+                using (IDbConnection connection = new SqlConnection(_configuration["SqlServer:ConnectionStrings:DefaultConnection"]))
+                {
+                    connection.Open();
+                    string sqlText = $"select * dbo.Products";
+                    var result = await connection.QueryAsync<Product>(sqlText);  
+                    return result.ToList();
+                }
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw new ProductsServiceExceptions(ex.Message);
+            }
+        }
+
+        public async Task<Product> GetProductByCategory(string category)
+        {
+            try
+            {
+                using (IDbConnection connection = new SqlConnection(_configuration["SqlServer:ConnectionStrings:DefaultConnection"]))
+                {
+                    connection.Open();
+                    string sqlText = $"select * from dbo.Products where category = @_category";
+                    var result = await connection.QueryFirstOrDefaultAsync<Product>(sqlText, new { _category = category });
+                    return result;
+                }
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw new ProductsServiceExceptions(ex.Message);
+            }
+        }
+
+        public async Task<Product> GetProductById(Guid id)
+        {
+            try
+            {
+                using (IDbConnection connection = new SqlConnection(_configuration["SqlServer:ConnectionStrings:DefaultConnection"]))
+                {
+                    connection.Open();
+                    string sqlText = $"select * from dbo.Products where id = @_id";
+                    var result = await connection.QueryFirstOrDefaultAsync<Product>(sqlText, new { _id = id });
+                    return result;
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new ProductsServiceExceptions(ex.Message);
+            }
         }
     }
 }

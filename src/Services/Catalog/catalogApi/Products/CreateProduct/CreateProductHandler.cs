@@ -1,4 +1,4 @@
-﻿using catalogApi.Products.IRepository;
+﻿using catalogApi.Products.Repository;
 
 namespace catalogApi.Products.CreateProduct
 {

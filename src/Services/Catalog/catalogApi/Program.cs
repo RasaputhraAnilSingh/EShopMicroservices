@@ -1,5 +1,5 @@
-using catalogApi.Products.IRepository;
 using catalogApi.Products.Repository;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
